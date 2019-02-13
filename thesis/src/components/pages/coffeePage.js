@@ -5,13 +5,14 @@ import ItemList from '../itemList';
 import CoffeeService from '../../services/coffeeService';
 import SearchPanel from '../searchPanel';
 import FilterPanel from '../filterPanel';
+import {withRouter} from 'react-router-dom';
 
 import './coffeePage.css';
 import Logo from './img/Logo.svg';
 import BeansBlack from './img/Beans_logo_dark.svg';
 import Girl from './img/coffee_girl.jpg';
 
-export default class CoffeePage extends Component {
+class CoffeePage extends Component {
     coffeeService = new CoffeeService();
 
     state = {
@@ -73,9 +74,13 @@ export default class CoffeePage extends Component {
                             <Col lg = {{size: 10, offset: 1}}>
                                 <div className="shop__wrapper">
                                     <ItemList 
+                                        onItemSelected = {(item) => {
+                                            this.props.history.push(`/coffee/${item.name}`, item);
+                                        }}
                                         getData = {this.coffeeService.getCoffee}
                                         term = {this.state.term}
-                                        filter = {this.state.filter}/>
+                                        filter = {this.state.filter}
+                                        classItem = 'shop'/>
                                 </div>
                             </Col>
                         </Row>
@@ -85,3 +90,5 @@ export default class CoffeePage extends Component {
         )
     }
 }
+
+export default withRouter(CoffeePage);

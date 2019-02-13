@@ -12,6 +12,32 @@ import BeansBlack from './img/Beans_logo_dark.svg';
 
 export default class MainPage extends Component {
     coffeeService = new CoffeeService();
+    state = {
+        itemCoffee: null
+    }
+
+    onItemLoaded = (item) => {
+        this.setState ({
+            itemCoffee: item, 
+            loading: false
+        })
+    }
+
+    onError = (err) => {
+        this.setState({
+            errorNumber: err,
+            error: true,
+            loading: false
+        })
+    }
+
+    componentDidMount() {
+        this.coffeeService.getCoffee()
+            .then(this.onItemLoaded)
+            .catch((res) => {
+                this.onError(res.message);
+            }); 
+    }
     render() {
         return (
             <>
@@ -63,10 +89,17 @@ export default class MainPage extends Component {
                             <Col lg = {{size: 10, offset: 1}}>
                                 <div className="best__wrapper">
                                     <ItemList 
-                                        // onItemSelected = {(name) => {
-                                        //     this.props.history.push('/coffee', name)
-                                        // }}
-                                        getData = {this.coffeeService.getBestSellers}/>
+                                        onItemSelected = {(item) => {
+                                            const arrName = (arrCoffee, arrItem) => {
+                                                const arr = arrCoffee.filter((item) => {
+                                                return item.name === arrItem;
+                                                })
+                                                this.props.history.push(`/coffee/${item.name}`, arr[0]);
+                                            }
+                                            arrName(this.state.itemCoffee, item.name);
+                                        }}
+                                        getData = {this.coffeeService.getBestSellers}
+                                        classItem = 'best'/>
                                 </div>
                             </Col>
                         </Row>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NavPanel from '../navPanel';
-import {MainPage, CoffeePage, GoodsPage} from '../pages';
+import {MainPage, CoffeePage, GoodsPage, CoffeeItems, ContactPage} from '../pages';
 
 import '../../index.css';
 import LogoBlack from './Logo_black.svg';
@@ -15,10 +15,11 @@ export default class App extends Component {
                 <div className = "app">
                     <Switch>
                         <Route path = '/' exact component = {MainPage}/>
-                        <Route path = '/coffee' component = {CoffeePage}/>
+                        <Route path = '/coffee' exact component = {CoffeePage}/>
+                        <Route path = '/coffee/:id' component = {CoffeeItems}/>
                         <Route path = '/goods' component = {GoodsPage}/>
-                        {/* <Route path = '/contacts' component = {ContactPage}/>
-                        <Route component = {ErrorPage}/> */}
+                        <Route path = '/contacts' component = {ContactPage}/>
+                        {/* <Route component = {ErrorPage}/> */}
                     </Switch>
                     <Container>
                         <Row>

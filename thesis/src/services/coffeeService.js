@@ -24,8 +24,4 @@ export default class CoffeeService {
         let res = await this.getResourse();
         return res.goods;
     }
-
-    idGenerator() {
-        return Math.random().toString(36).substr(2, 12);
-    }
 }

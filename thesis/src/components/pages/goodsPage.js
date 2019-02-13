@@ -14,7 +14,7 @@ export default class GoodsPage extends Component {
     render() {
         return (
             <>
-                <div className="bannerfor">
+                <div className="banner__for">
                     <Container>
                         <Row>
                             <Col lg = '6'>
@@ -47,8 +47,14 @@ export default class GoodsPage extends Component {
                         <div className="line"></div>
                         <Row>
                             <Col lg = {{size: 10, offset: 1}}>
-                                <div className="best__wrapper">
-                                    <ItemList getData = {this.coffeeService.getGoods}/>
+                                <div className="shop__wrapper">
+                                    <ItemList 
+                                        onItemSelected = {() => {
+                                            return;
+                                        }}
+                                        getData = {this.coffeeService.getGoods}
+                                        classItem = 'shop'
+                                    />
                                 </div>
                             </Col>
                         </Row>

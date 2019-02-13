@@ -61,30 +61,21 @@ export default class ItemList extends Component {
     renderItems(arr) {
         return arr.map((item) => {
             const {name, url, price, country} = item;
-            if (!country) {
-                return (
-                    <div 
-                        key={this.coffeeService.idGenerator()} 
-                        className="best__item"
-                        // onClick = {() => this.props.onItemSelected(name)}
-                        >
-                        <img src={url} alt="coffee"/>
-                        <div className="best__item-title">{name}</div>
-                        <div className="best__item-price">{price}</div>
-                    </div>
-                )
-            } else {
-                return (
-                    <div key={this.coffeeService.idGenerator()} className="shop__item">
-                        <img src={url} alt="coffee"/>
-                        <div className="shop__item-title">
-                            {name}
-                        </div>
-                        <div className="shop__item-country">{country}</div>
-                        <div className="shop__item-price">{price}</div>
-                    </div>
-                )
-            }
+
+            return (
+                <div 
+                    key={name} 
+                    className={this.props.classItem + '__item'}
+                    onClick = {() => this.props.onItemSelected(item)}
+                    >
+                    <img src={url} alt="coffee"/>
+                    <div className={this.props.classItem + '__item-title'}>{name}</div>
+                    {country &&
+                        <div className={this.props.classItem + '__item-country'}>{country}</div>
+                    }
+                    <div className={this.props.classItem + '__item-price'}>{price}</div>
+                </div>
+            )
         })
     }
     
