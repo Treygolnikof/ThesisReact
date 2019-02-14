@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
 import NavPanel from '../navPanel';
 import CoffeeService from '../../services/coffeeService';
-import { Formik, Field, Form } from "formik";
-import FormSchema from "../formSchema";
+import { Formik, Field, Form} from 'formik';
+import FormSchema from '../formSchema';
+import Spinner from '../spinner';
+import ErrorMessage from '../errorMessage';
 
 import './coffeePage.css';
 import Logo from './img/Logo.svg';
@@ -14,8 +16,17 @@ export default class ContactPage extends Component {
     coffeeService = new CoffeeService();
 
     state = {
-        value: '',
-        success: false
+        value: null,
+        success: false,
+        loading: false,
+        error: false
+    }
+
+    onError = () => {
+        this.setState({
+            error: true,
+            loading: false
+        })
     }
 
     phoneNumberMask = (event) => {
@@ -37,6 +48,7 @@ export default class ContactPage extends Component {
             phone: value,
             message: values.message
         }
+        this.setState({loading: true})
         fetch('http://localhost:3001/contacts', {
             method: "POST",
             headers: {
@@ -47,11 +59,16 @@ export default class ContactPage extends Component {
         })
         .then(response => response.json())
         .then(this.onSuccess)
-        .catch(err => console.log(err))
+        .catch((res) => {
+            this.onError(res.message);
+        }); 
     }
 
     onSuccess = () => {
-        this.setState ({success: true});
+        this.setState ({
+            success: true,
+            loading: false
+        });
     }
 
     onBack = () => {
@@ -59,8 +76,11 @@ export default class ContactPage extends Component {
     }
 
     render() {
-        const {success} = this.state;
-        const forms = !success ? <GetForm handleSubmit = {this.handleSubmit} state = {this.state.value} phoneNumberMask = {this.phoneNumberMask}/> : <ThanksBlock onBack = {this.onBack}/>;
+        const {success, error, loading} = this.state;
+        const errorMessage = error ? <ErrorMessage/> : null;
+        const spinner = loading ? <Spinner/> : null;
+        const forms = !(success || loading || error) ? <GetForm handleSubmit = {this.handleSubmit} state = {this.state.value} phoneNumberMask = {this.phoneNumberMask}/> : null;
+        const thanks = success && !(loading || error) ? <ThanksBlock onBack = {this.onBack}/> : null;
         return (
             <>
                 <div className="contact__banner">
@@ -79,7 +99,10 @@ export default class ContactPage extends Component {
                             <Col lg = {{size: 8, offset: 2}}>
                                 <div className="title">Tell us about your taste</div>
                                 <img className="beanslogo" src={BeansBlack} alt="Beans logo"/>
+                                {errorMessage}
+                                {spinner}
                                 {forms}
+                                {thanks}
                             </Col>
                         </Row>
                     </Container>

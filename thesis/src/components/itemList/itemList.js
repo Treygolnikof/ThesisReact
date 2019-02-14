@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import CoffeeService from '../../services/coffeeService';
 import Spinner from '../spinner'; 
+import ErrorMessage from '../errorMessage';
 
 import './itemList.css';
 
@@ -8,21 +9,19 @@ export default class ItemList extends Component {
     coffeeService = new CoffeeService();
 
     state = {
-        item: null
+        item: null,
+        error: false
     }
 
     onItemLoaded = (item) => {
         this.setState ({
-            item, 
-            loading: false
+            item
         })
     }
 
-    onError = (err) => {
+    onError = () => {
         this.setState({
-            errorNumber: err,
-            error: true,
-            loading: false
+            error: true
         })
     }
 
@@ -80,14 +79,26 @@ export default class ItemList extends Component {
     }
     
     render() {
-        const {item} = this.state;
+        const {item, error} = this.state;
         const {term, filter} = this.props;
 
         let visibleItems = '';
 
-        if (!item) {
-            return <Spinner/>;
+        if(error) {
+            return (
+                <div className={this.props.classItem + '__wrapper'}>
+                    <ErrorMessage/>
+                </div>
+            )
         }
+
+        if (!item) {
+            return (
+                <div className={this.props.classItem + '__wrapper'}>
+                    <Spinner/>
+                </div>
+            );
+        } 
 
         if (item[0].country) {
             visibleItems = this.filterItem(this.searchItem(item, term), filter);
@@ -98,9 +109,9 @@ export default class ItemList extends Component {
         const items = this.renderItems(visibleItems);
 
         return (
-            <>
+            <div className={this.props.classItem + '__wrapper'}>
                 {items}
-            </>
+            </div>
         );
     }
 }

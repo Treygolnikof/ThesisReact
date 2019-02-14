@@ -87,20 +87,18 @@ export default class MainPage extends Component {
                         <div className="title">Our best</div>
                         <Row>
                             <Col lg = {{size: 10, offset: 1}}>
-                                <div className="best__wrapper">
-                                    <ItemList 
-                                        onItemSelected = {(item) => {
-                                            const arrName = (arrCoffee, arrItem) => {
-                                                const arr = arrCoffee.filter((item) => {
-                                                return item.name === arrItem;
-                                                })
-                                                this.props.history.push(`/coffee/${item.name}`, arr[0]);
-                                            }
-                                            arrName(this.state.itemCoffee, item.name);
-                                        }}
-                                        getData = {this.coffeeService.getBestSellers}
-                                        classItem = 'best'/>
-                                </div>
+                                <ItemList 
+                                    onItemSelected = {(item) => {
+                                        const arrName = (arrCoffee, arrItem) => {
+                                            const arr = arrCoffee.filter((item) => {
+                                            return item.name === arrItem;
+                                            })
+                                            this.props.history.push(`/coffee/${item.name}`, arr[0]);
+                                        }
+                                        arrName(this.state.itemCoffee, item.name);
+                                    }}
+                                    getData = {this.coffeeService.getBestSellers}
+                                    classItem = 'best'/>
                             </Col>
                         </Row>
                     </Container>

@@ -10,8 +10,26 @@ import BeansBlack from './img/Beans_logo_dark.svg';
 export default class CoffeeItems extends Component {
     coffeeService = new CoffeeService();
 
+    state = {
+        click: false
+    }
+
+    onDescription = () => {
+        this.setState({
+            click: !this.state.click
+        });
+    }
+
     render() {
         const {country, url, price, description} = this.props.location.state;
+
+        let desc = ''
+
+        if (description.length > 200 && !this.state.click) {
+            desc = description.slice(0, 200) + '...';
+        } else {
+            desc = description;
+        }
         return (
             <>
                 <div className="banner">
@@ -37,9 +55,9 @@ export default class CoffeeItems extends Component {
                                     <span>Country:</span>
                                     {country}
                                 </div>
-                                <div className="shop__point">
+                                <div className="shop__point" onClick = {this.onDescription}>
                                     <span>Description:</span>
-                                    {description}
+                                    {desc}
                                 </div>
                                 <div className="shop__point">
                                     <span>Price:</span>

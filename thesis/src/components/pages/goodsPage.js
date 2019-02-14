@@ -47,15 +47,13 @@ export default class GoodsPage extends Component {
                         <div className="line"></div>
                         <Row>
                             <Col lg = {{size: 10, offset: 1}}>
-                                <div className="shop__wrapper">
-                                    <ItemList 
-                                        onItemSelected = {() => {
-                                            return;
-                                        }}
-                                        getData = {this.coffeeService.getGoods}
-                                        classItem = 'shop'
-                                    />
-                                </div>
+                                <ItemList 
+                                    onItemSelected = {() => {
+                                        return;
+                                    }}
+                                    getData = {this.coffeeService.getGoods}
+                                    classItem = 'shop'
+                                />
                             </Col>
                         </Row>
                     </Container>

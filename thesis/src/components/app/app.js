@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NavPanel from '../navPanel';
-import {MainPage, CoffeePage, GoodsPage, CoffeeItems, ContactPage} from '../pages';
+import {MainPage, CoffeePage, GoodsPage, CoffeeItems, ContactPage, ErrorPage} from '../pages';
 
 import '../../index.css';
 import LogoBlack from './Logo_black.svg';
@@ -19,7 +19,7 @@ export default class App extends Component {
                         <Route path = '/coffee/:id' component = {CoffeeItems}/>
                         <Route path = '/goods' component = {GoodsPage}/>
                         <Route path = '/contacts' component = {ContactPage}/>
-                        {/* <Route component = {ErrorPage}/> */}
+                        <Route component = {ErrorPage}/>
                     </Switch>
                     <Container>
                         <Row>

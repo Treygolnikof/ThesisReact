@@ -4,7 +4,7 @@ import './searchPanel.css';
 
 export default class searchPanel extends Component {
     state = {
-        term: ''
+        term: null
     }
 
     onUpdateSearch = (e) => {
