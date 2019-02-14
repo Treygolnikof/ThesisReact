@@ -46,12 +46,8 @@ export default class ItemList extends Component {
     }
 
     filterItem(items, filter) {
-        if (filter === 'Brazil') {
-            return items.filter(item => item.country === "Brazil");
-        } else if (filter === 'Columbia') {
-            return items.filter(item => item.country === "Columbia");
-        } else if (filter === 'Kenya') {
-            return items.filter(item => item.country === "Kenya");
+        if (filter !== '' && filter !== 'all') {
+            return items.filter(item => item.country === filter);
         } else {
             return items;
         }

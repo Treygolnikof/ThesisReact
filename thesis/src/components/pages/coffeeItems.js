@@ -15,9 +15,9 @@ export default class CoffeeItems extends Component {
     }
 
     onDescription = () => {
-        this.setState({
-            click: !this.state.click
-        });
+        this.setState((state) => ({
+            click: !state.click
+        }));
     }
 
     render() {
