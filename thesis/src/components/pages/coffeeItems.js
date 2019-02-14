@@ -21,7 +21,7 @@ export default class CoffeeItems extends Component {
     }
 
     render() {
-        const {country, url, price, description} = this.props.location.state;
+        const {name, country, url, price, description} = this.props.location.state;
 
         let desc = ''
 
@@ -39,7 +39,7 @@ export default class CoffeeItems extends Component {
                                 <NavPanel position = "header" color = "text-white" img = {Logo}/>
                             </Col>
                         </Row>
-                        <h1 className="title-big">Our Coffee</h1>
+                        <h1 className="title-big">{name}</h1>
                     </Container>
                 </div>
                 <section className="shop">
