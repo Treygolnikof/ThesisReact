@@ -61,14 +61,18 @@ export default class ItemList extends Component {
                 <div 
                     key={name} 
                     className={this.props.classItem + '__item'}
-                    onClick = {() => this.props.onItemSelected(item)}
                     >
-                    <img src={url} alt="coffee"/>
-                    <div className={this.props.classItem + '__item-title'}>{name}</div>
-                    {country &&
-                        <div className={this.props.classItem + '__item-country'}>{country}</div>
-                    }
-                    <div className={this.props.classItem + '__item-price'}>{price}</div>
+                    <div id="card-front" className="card">
+                        <img src={url} alt="coffee"/>
+                    </div>
+                    <div id="card-back" className="card">
+                        <span className={this.props.classItem + '__item-title'}>{name}</span>
+                        {country &&
+                            <span className={this.props.classItem + '__item-country'}>Country: {country}</span>
+                        }
+                        <span className={this.props.classItem + '__item-price'}>Price: {price}</span>
+                        <button className="best__btn text-decoration-none" onClick = {() => this.props.onItemSelected(item)}>More</button>
+                    </div>
                 </div>
             )
         })
@@ -101,8 +105,16 @@ export default class ItemList extends Component {
         } else {
             visibleItems = item;
         }
-
+        
         const items = this.renderItems(visibleItems);
+
+        if (items.length === 0) {
+            return (
+                <div className={this.props.classItem + '__wrapper'}>
+                    <ErrorMessage/>
+                </div>
+            )
+        }
 
         return (
             <div className={this.props.classItem + '__wrapper'}>

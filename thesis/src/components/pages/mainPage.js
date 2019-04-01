@@ -45,7 +45,7 @@ export default class MainPage extends Component {
                     <Container>
                         <Row>
                             <Col lg = '6'>
-                                <NavPanel position = "header" color = "text-white" img = {Logo}/>
+                                <NavPanel position = "header" img = {Logo}/>
                             </Col>
                         </Row>
                         <Row>

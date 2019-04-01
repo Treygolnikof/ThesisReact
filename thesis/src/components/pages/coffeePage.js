@@ -35,7 +35,7 @@ class CoffeePage extends Component {
                     <Container>
                         <Row>
                             <Col lg = '6'>
-                                <NavPanel position = "header" color = "text-white" img = {Logo}/>
+                                <NavPanel position = "header" img = {Logo}/>
                             </Col>
                         </Row>
                         <h1 className="title-big">Our Coffee</h1>

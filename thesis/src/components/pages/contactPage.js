@@ -16,7 +16,7 @@ export default class ContactPage extends Component {
     coffeeService = new CoffeeService();
 
     state = {
-        value: null,
+        value: '',
         success: false,
         loading: false,
         error: false
@@ -87,7 +87,7 @@ export default class ContactPage extends Component {
                     <Container>
                         <Row>
                             <Col lg = '6'>
-                                <NavPanel position = "header" color = "text-white" img = {Logo}/>
+                                <NavPanel position = "header" img = {Logo}/>
                             </Col>
                         </Row>
                         <h1 className="title-big">Contact us</h1>

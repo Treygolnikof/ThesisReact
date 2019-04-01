@@ -24,7 +24,7 @@ export default class App extends Component {
                     <Container>
                         <Row>
                             <Col lg = {{size: 6, offset: 3}}>
-                                <NavPanel position = "footer" color = "text-dark" img = {LogoBlack}/>
+                                <NavPanel position = "footer" img = {LogoBlack}/>
                             </Col>
                         </Row>
                         <img className="beanslogo" src={BeansBlack} alt="Beans logo"/>

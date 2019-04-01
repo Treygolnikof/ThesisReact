@@ -12,6 +12,36 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.header__item a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.6s;
+}
+
+.header__item a:not([href="/"]):before, .footer__item a:not([href="/"]):before {
+    content: "";
+    width: 0;
+    height: 0.1em;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transition: all 0.3s;
+}
+
+.header__item a:before {
+    background: #fff;
+}
+
+.footer__item a:before {
+    background: #000;
+}
+
+.header__item a:hover:before, .footer__item a:hover:before {
+    width: 100%;
+    left: 0;
+}
+
 .header__item:first-child {
     transform: translateY(3px);
 }
@@ -30,4 +60,13 @@
     margin-right: 40px;
     font-weight: normal;
 }
+
+.footer__item a {
+    color: #000;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.6s;
+}
+
+
 
