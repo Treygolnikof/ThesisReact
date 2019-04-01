@@ -64,6 +64,7 @@ export default class ItemList extends Component {
                     >
                     <div id="card-front" className="card">
                         <img src={url} alt="coffee"/>
+                        <span className={this.props.classItem + '__item-title_front'}>{name}</span>
                     </div>
                     <div id="card-back" className="card">
                         <span className={this.props.classItem + '__item-title'}>{name}</span>
